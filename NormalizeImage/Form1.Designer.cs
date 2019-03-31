@@ -33,21 +33,23 @@
             this.panelOutput = new System.Windows.Forms.Panel();
             this.OutputPicture = new System.Windows.Forms.PictureBox();
             this.groupBoxMenu = new System.Windows.Forms.GroupBox();
-            this.buttonOpen = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
             this.buttonNormalize = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonOpen = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelInputHash = new System.Windows.Forms.Label();
             this.groupBoxInputHash = new System.Windows.Forms.GroupBox();
-            this.buttonInputHash256 = new System.Windows.Forms.Button();
-            this.buttonInputHash512 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonInputHash512 = new System.Windows.Forms.Button();
+            this.buttonInputHash256 = new System.Windows.Forms.Button();
             this.groupBoxOutputHash = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonOutputHash512 = new System.Windows.Forms.Button();
             this.buttonOutputHash256 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.labelOutputHash = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panelInput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.InputPicture)).BeginInit();
             this.panelOutput.SuspendLayout();
@@ -108,14 +110,14 @@
             this.groupBoxMenu.TabStop = false;
             this.groupBoxMenu.Text = "Меню";
             // 
-            // buttonOpen
+            // buttonNormalize
             // 
-            this.buttonOpen.Location = new System.Drawing.Point(35, 54);
-            this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(91, 48);
-            this.buttonOpen.TabIndex = 11;
-            this.buttonOpen.Text = "Открыть";
-            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonNormalize.Location = new System.Drawing.Point(35, 139);
+            this.buttonNormalize.Name = "buttonNormalize";
+            this.buttonNormalize.Size = new System.Drawing.Size(91, 48);
+            this.buttonNormalize.TabIndex = 13;
+            this.buttonNormalize.Text = "Нормализация изображения";
+            this.buttonNormalize.UseVisualStyleBackColor = true;
             // 
             // buttonSave
             // 
@@ -125,15 +127,17 @@
             this.buttonSave.TabIndex = 12;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // buttonNormalize
+            // buttonOpen
             // 
-            this.buttonNormalize.Location = new System.Drawing.Point(35, 139);
-            this.buttonNormalize.Name = "buttonNormalize";
-            this.buttonNormalize.Size = new System.Drawing.Size(91, 48);
-            this.buttonNormalize.TabIndex = 13;
-            this.buttonNormalize.Text = "Нормализация изображения";
-            this.buttonNormalize.UseVisualStyleBackColor = true;
+            this.buttonOpen.Location = new System.Drawing.Point(35, 54);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(91, 48);
+            this.buttonOpen.TabIndex = 11;
+            this.buttonOpen.Text = "Открыть";
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
             // label1
             // 
@@ -168,14 +172,14 @@
             this.groupBoxInputHash.TabStop = false;
             this.groupBoxInputHash.Text = "Входное изображение";
             // 
-            // buttonInputHash256
+            // label3
             // 
-            this.buttonInputHash256.Location = new System.Drawing.Point(375, 131);
-            this.buttonInputHash256.Name = "buttonInputHash256";
-            this.buttonInputHash256.Size = new System.Drawing.Size(75, 23);
-            this.buttonInputHash256.TabIndex = 13;
-            this.buttonInputHash256.Text = "256";
-            this.buttonInputHash256.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(181, 136);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(194, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Выберите размер получаемого хэша";
             // 
             // buttonInputHash512
             // 
@@ -186,14 +190,14 @@
             this.buttonInputHash512.Text = "512";
             this.buttonInputHash512.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // buttonInputHash256
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(181, 136);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(194, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Выберите размер получаемого хэша";
+            this.buttonInputHash256.Location = new System.Drawing.Point(375, 131);
+            this.buttonInputHash256.Name = "buttonInputHash256";
+            this.buttonInputHash256.Size = new System.Drawing.Size(75, 23);
+            this.buttonInputHash256.TabIndex = 13;
+            this.buttonInputHash256.Text = "256";
+            this.buttonInputHash256.UseVisualStyleBackColor = true;
             // 
             // groupBoxOutputHash
             // 
@@ -255,6 +259,18 @@
             this.labelOutputHash.TabIndex = 12;
             this.labelOutputHash.Text = "Empty";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "PNM Files|*.pnm|Windows Bitmap|*.bmp|Graphics Interchange Format|*.gif|JPEG|*.jp*" +
+    "|Portable Network Graphics|*.png|Webp|*.webp";
+            this.openFileDialog1.FilterIndex = 0;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "bmp";
+            this.saveFileDialog1.Filter = "PNM Files|*.pnm|Windows Bitmap|*.bmp|Graphics Interchange Format|*.gif|JPEG|*.jp*" +
+    "|Portable Network Graphics|*. png";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +318,8 @@
         private System.Windows.Forms.Button buttonOutputHash256;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labelOutputHash;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
