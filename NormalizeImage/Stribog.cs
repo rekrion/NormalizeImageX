@@ -246,6 +246,32 @@ namespace NormalizeImage
             K = L(K);
             return K;
         }
+        private byte[] E(byte[] K, byte[] m)
+        {
+            byte[] state = AddXor512(K, m);
+            for (int i = 0; i < 12; i++)
+            {
+                state = S(state);
+                state = P(state);
+                state = L(state);
+                K = KeySchedule(K, i);
+                state = AddXor512(state, K);
+            }
+            return state;
+        }
+
+        private byte[] G_n(byte[] N, byte[] h, byte[] m)
+        {
+            byte[] K = AddXor512(h, N);
+            K = S(K);
+            K = P(K);
+            K = L(K);
+            byte[] t = E(K, m);
+            t = AddXor512(t, h);
+            byte[] newh = AddXor512(t, m);
+            return newh;
+        }
+
     }
 }
 
