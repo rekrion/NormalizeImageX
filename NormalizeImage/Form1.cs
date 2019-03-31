@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,12 @@ namespace NormalizeImage
         {
             InitializeComponent();
         }
-
+        //Кнопка Открыть
         private void buttonOpen_Click(object sender, EventArgs e)
         {
             OpenFile();
         }
-
+        //Кнопка Сохранить
         private void buttonSave_Click(object sender, EventArgs e)
         {
             SaveFile();
@@ -78,6 +79,40 @@ namespace NormalizeImage
                 byteImage = ms.ToArray();
             }
             return byteImage;
+        }
+        //Получение Хэш кода (Стрибог) из изображения
+        public string GetHashCode_Stribog(Image picture, SizeHash sizeHash)
+        {
+            byte[] imagetobyte = GetByteArrayImage(picture);
+            Stribog G = new Stribog(sizeHash);
+            return BitConverter.ToString(G.GetHash(imagetobyte));
+        }
+
+
+        //Кнопка "Нормализация изображения"
+        private void buttonNormalize_Click(object sender, EventArgs e)
+        {
+             OutputPicture.Image = NormalizeImage(InputPicture.Image);
+        }
+        //Кнопка "256" для входного изображения
+        private void buttonInputHash256_Click(object sender, EventArgs e)
+        {
+            labelInputHash.Text=GetHashCode_Stribog(InputPicture.Image, SizeHash.Size256);
+        }
+        //Кнопка "512" для входного изображения
+        private void buttonInputHash512_Click(object sender, EventArgs e)
+        {
+            labelInputHash.Text = GetHashCode_Stribog(InputPicture.Image, SizeHash.Size512);
+        }
+        //Кнопка "256" для выходного изображения
+        private void buttonOutputHash256_Click(object sender, EventArgs e)
+        {
+            labelOutputHash.Text = GetHashCode_Stribog(OutputPicture.Image, SizeHash.Size256);
+        }
+        //Кнопка "512" для выходного изображения
+        private void buttonOutputHash512_Click(object sender, EventArgs e)
+        {
+            labelOutputHash.Text = GetHashCode_Stribog(OutputPicture.Image, SizeHash.Size512);
         }
     }
 }

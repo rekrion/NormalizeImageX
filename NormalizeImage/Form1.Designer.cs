@@ -118,6 +118,7 @@
             this.buttonNormalize.TabIndex = 13;
             this.buttonNormalize.Text = "Нормализация изображения";
             this.buttonNormalize.UseVisualStyleBackColor = true;
+            this.buttonNormalize.Click += new System.EventHandler(this.buttonNormalize_Click);
             // 
             // buttonSave
             // 
@@ -189,6 +190,7 @@
             this.buttonInputHash512.TabIndex = 14;
             this.buttonInputHash512.Text = "512";
             this.buttonInputHash512.UseVisualStyleBackColor = true;
+            this.buttonInputHash512.Click += new System.EventHandler(this.buttonInputHash512_Click);
             // 
             // buttonInputHash256
             // 
@@ -198,6 +200,7 @@
             this.buttonInputHash256.TabIndex = 13;
             this.buttonInputHash256.Text = "256";
             this.buttonInputHash256.UseVisualStyleBackColor = true;
+            this.buttonInputHash256.Click += new System.EventHandler(this.buttonInputHash256_Click);
             // 
             // groupBoxOutputHash
             // 
@@ -230,6 +233,7 @@
             this.buttonOutputHash512.TabIndex = 14;
             this.buttonOutputHash512.Text = "512";
             this.buttonOutputHash512.UseVisualStyleBackColor = true;
+            this.buttonOutputHash512.Click += new System.EventHandler(this.buttonOutputHash512_Click);
             // 
             // buttonOutputHash256
             // 
@@ -239,6 +243,7 @@
             this.buttonOutputHash256.TabIndex = 13;
             this.buttonOutputHash256.Text = "256";
             this.buttonOutputHash256.UseVisualStyleBackColor = true;
+            this.buttonOutputHash256.Click += new System.EventHandler(this.buttonOutputHash256_Click);
             // 
             // label4
             // 
