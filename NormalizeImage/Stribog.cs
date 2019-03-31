@@ -14,7 +14,7 @@ namespace NormalizeImage
     };
     class Stribog
     {
-        // Matrix A for MixColumns (L) function
+        // Матрица A для функции MixColumns (L) 
         private ulong[] A = {
         0x8e20faa72ba0b470, 0x47107ddd9b505a38, 0xad08b0e0c3282d1c, 0xd8045870ef14980e,
         0x6c022c38f90a4c07, 0x3601161cf205268d, 0x1b8e0b0e798c13c8, 0x83478b07b2468764,
@@ -34,7 +34,7 @@ namespace NormalizeImage
         0x07e095624504536c, 0x8d70c431ac02a736, 0xc83862965601dd1b, 0x641c314b2b8ee083
         };
 
-        // Substitution for SubBytes function
+        // Замена функции SubBytes
         private byte[] Sbox ={
         0xFC, 0xEE, 0xDD, 0x11, 0xCF, 0x6E, 0x31, 0x16, 0xFB, 0xC4, 0xFA, 0xDA, 0x23, 0xC5, 0x04, 0x4D,
         0xE9, 0x77, 0xF0, 0xDB, 0x93, 0x2E, 0x99, 0xBA, 0x17, 0x36, 0xF1, 0xBB, 0x14, 0xCD, 0x5F, 0xC1,
@@ -54,7 +54,7 @@ namespace NormalizeImage
         0x59, 0xA6, 0x74, 0xD2, 0xE6, 0xF4, 0xB4, 0xC0, 0xD1, 0x66, 0xAF, 0xC2, 0x39, 0x4B, 0x63, 0xB6
         };
 
-        // Substitution for Transposition (P) function
+        // Замена функции транспозиции (P)
         private byte[] Tau ={
         0, 8, 16, 24, 32, 40, 48, 56,
         1, 9, 17, 25, 33, 41, 49, 57,
@@ -66,7 +66,7 @@ namespace NormalizeImage
         7, 15, 23, 31, 39, 47, 55, 63
         };
 
-        // Constant values for KeySchedule function
+        // Постоянные значения для функции KeySchedule 
         private byte[][] C = {
         new byte[64]{
         0xb1,0x08,0x5b,0xda,0x1e,0xca,0xda,0xe9,0xeb,0xcb,0x2f,0x81,0xc0,0x65,0x7c,0x1f,
@@ -271,7 +271,74 @@ namespace NormalizeImage
             byte[] newh = AddXor512(t, m);
             return newh;
         }
-
+        public byte[] GetHash(byte[] message)
+        {
+            byte[] paddedMes = new byte[64];
+            int len = message.Length * 8;
+            byte[] h = new byte[64];
+            Array.Copy(iv, h, 64);
+            byte[] N_0 ={
+            0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+            0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+            0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+            0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+            };
+            if (outLen == 512)
+            {
+                for (int i = 0; i < 64; i++)
+                {
+                    N[i] = 0x00;
+                    Sigma[i] = 0x00;
+                    iv[i] = 0x00;
+                }
+            }
+            else if (outLen == 256)
+            {
+                for (int i = 0; i < 64; i++)
+                {
+                    N[i] = 0x00;
+                    Sigma[i] = 0x00;
+                    iv[i] = 0x01;
+                }
+            }
+            byte[] N_512 = BitConverter.GetBytes(512);
+            int inc = 0;
+            while (len >= 512)
+            {
+                inc++;
+                byte[] tempMes = new byte[64];
+                Array.Copy(message, message.Length - inc * 64, tempMes, 0, 64);
+                h = G_n(N, h, tempMes);
+                N = AddModulo512(N, N_512.Reverse().ToArray());
+                Sigma = AddModulo512(Sigma, tempMes);
+                len -= 512;
+            }
+            byte[] message1 = new byte[message.Length - inc * 64];
+            Array.Copy(message, 0, message1, 0, message.Length - inc * 64);
+            if (message1.Length < 64)
+            {
+                for (int i = 0; i < (64 - message1.Length - 1); i++)
+                {
+                    paddedMes[i] = 0;
+                }
+                paddedMes[64 - message1.Length - 1] = 0x01;
+                Array.Copy(message1, 0, paddedMes, 64 - message1.Length, message1.Length);
+            }
+            h = G_n(N, h, paddedMes);
+            byte[] MesLen = BitConverter.GetBytes(message1.Length * 8);
+            N = AddModulo512(N, MesLen.Reverse().ToArray());
+            Sigma = AddModulo512(Sigma, paddedMes);
+            h = G_n(N_0, h, N);
+            h = G_n(N_0, h, Sigma);
+            if (outLen == 512)
+                return h;
+            else
+            {
+                byte[] h256 = new byte[32];
+                Array.Copy(h, 0, h256, 0, 32);
+                return h256;
+            }
+        }
     }
 }
 
