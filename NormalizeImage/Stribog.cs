@@ -196,6 +196,56 @@ namespace NormalizeImage
                 c[i] = (byte)(a[i] ^ b[i]);
             return c;
         }
+        private byte[] S(byte[] state)
+        {
+            byte[] result = new byte[64];
+            for (int i = 0; i < 64; i++)
+                result[i] = Sbox[state[i]];
+            return result;
+        }
+
+        private byte[] P(byte[] state)
+        {
+            byte[] result = new byte[64];
+            for (int i = 0; i < 64; i++)
+            {
+                result[i] = state[Tau[i]];
+            }
+            return result;
+        }
+
+        private byte[] L(byte[] state)
+        {
+            byte[] result = new byte[64];
+            for (int i = 0; i < 8; i++)
+            {
+                ulong t = 0;
+                byte[] tempArray = new byte[8];
+                Array.Copy(state, i * 8, tempArray, 0, 8);
+                tempArray = tempArray.Reverse().ToArray();
+                BitArray tempBits1 = new BitArray(tempArray);
+                bool[] tempBits = new bool[64];
+                tempBits1.CopyTo(tempBits, 0);
+                tempBits = tempBits.Reverse().ToArray();
+                for (int j = 0; j < 64; j++)
+                {
+                    if (tempBits[j] != false)
+                        t = t ^ A[j];
+                }
+                byte[] ResPart = BitConverter.GetBytes(t).Reverse().ToArray();
+                Array.Copy(ResPart, 0, result, i * 8, 8);
+            }
+            return result;
+        }
+
+        private byte[] KeySchedule(byte[] K, int i)
+        {
+            K = AddXor512(K, C[i]);
+            K = S(K);
+            K = P(K);
+            K = L(K);
+            return K;
+        }
     }
 }
 
