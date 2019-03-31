@@ -62,7 +62,22 @@ namespace NormalizeImage
                 }
             }
         }
-
-
+        //Нормализация изображения
+        public Image NormalizeImage(Image image)
+        {
+            Image imageReturn = ImageBrightnessNormalizer.NormalizeImageBrightness(new Bitmap(image));
+            return imageReturn;
+        }
+        //Получение байтового массива из изображения
+        private byte[] GetByteArrayImage(Image a)
+        {
+            byte[] byteImage;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                a.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byteImage = ms.ToArray();
+            }
+            return byteImage;
+        }
     }
 }
