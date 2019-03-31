@@ -39,9 +39,11 @@ namespace NormalizeImage
 
                 if (openFileDialog1.FilterIndex == 1)
                     InputPicture.Image = ShaniSoft.Drawing.PNM.ReadPNM(openFileDialog1.FileName);
-                if (openFileDialog1.FilterIndex == 6)
+                else if (openFileDialog1.FilterIndex == 6)
+                {
                     using (Webp webp = new Webp())
                         InputPicture.Image = webp.Load(openFileDialog1.FileName);
+                }
                 else
                     InputPicture.Image = new Bitmap(openFileDialog1.FileName);
                 InputPicture.Refresh();
@@ -83,9 +85,14 @@ namespace NormalizeImage
         //Получение Хэш кода (Стрибог) из изображения
         public string GetHashCode_Stribog(Image picture, SizeHash sizeHash)
         {
-            byte[] imagetobyte = GetByteArrayImage(picture);
-            Stribog G = new Stribog(sizeHash);
-            return BitConverter.ToString(G.GetHash(imagetobyte));
+            if (picture != null)
+            {
+                byte[] imagetobyte = GetByteArrayImage(picture);
+                Stribog G = new Stribog(sizeHash);
+                return BitConverter.ToString(G.GetHash(imagetobyte));
+            }
+            else
+                return "Empty";
         }
 
 

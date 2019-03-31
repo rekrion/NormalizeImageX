@@ -154,6 +154,7 @@
             this.labelInputHash.AutoSize = true;
             this.labelInputHash.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelInputHash.Location = new System.Drawing.Point(6, 54);
+            this.labelInputHash.MaximumSize = new System.Drawing.Size(525, 50);
             this.labelInputHash.Name = "labelInputHash";
             this.labelInputHash.Size = new System.Drawing.Size(36, 13);
             this.labelInputHash.TabIndex = 12;
@@ -259,6 +260,7 @@
             this.labelOutputHash.AutoSize = true;
             this.labelOutputHash.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelOutputHash.Location = new System.Drawing.Point(6, 54);
+            this.labelOutputHash.MaximumSize = new System.Drawing.Size(525, 50);
             this.labelOutputHash.Name = "labelOutputHash";
             this.labelOutputHash.Size = new System.Drawing.Size(36, 13);
             this.labelOutputHash.TabIndex = 12;
