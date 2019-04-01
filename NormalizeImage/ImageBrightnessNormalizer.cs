@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NormalizeImage
 {
     //Класс для нормализация яркости изображения
-    class ImageBrightnessNormalizer
+    public class ImageBrightnessNormalizer
     {
         //Константы
         private const float MIN_BRIGHTNESS = 0;

@@ -1,0 +1,12 @@
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\bin\Release\NormalizeImage.exe.config
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\bin\Release\NormalizeImage.exe
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\bin\Release\NormalizeImage.pdb
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\bin\Release\ShaniSoft.Drawing.PNM.dll
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\obj\Release\NormalizeImage.csprojAssemblyReference.cache
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\obj\Release\NormalizeImage.MainForm.resources
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\obj\Release\NormalizeImage.Properties.Resources.resources
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\obj\Release\NormalizeImage.csproj.GenerateResource.cache
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\obj\Release\NormalizeImage.csproj.CoreCompileInputs.cache
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\obj\Release\NormalizeImage.csproj.CopyComplete
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\obj\Release\NormalizeImage.exe
+D:\ProgramStudio\Microsoft\Projects\NormalizeImage\NormalizeImage\obj\Release\NormalizeImage.pdb

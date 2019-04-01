@@ -12,7 +12,7 @@ namespace NormalizeImage
         Size256,
         Size512
     };
-    class Stribog
+    public class Stribog
     {
         // Матрица A для функции MixColumns (L) 
         private ulong[] A = {
