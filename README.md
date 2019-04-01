@@ -2,13 +2,27 @@
 
 Группа: ПО-51б;<br/>
 Студенты: Джабраилов Вадим Вагифович, Билецкий Владислав Игоревич;<br/>
-E-mail: vadwave@yandex.ru <br/>
-dagon0011@yandex.ru
+E-mail: vadwave@yandex.ru, dagon0011@yandex.ru<br/>
+
+Лабораторная работа. Модулья №2
+Ссылка на готовую программу:https://yadi.sk/d/x0aH1cdsE-v--w
 
 ------------------------------------------------------------------
 
 ### Инструкция по запуску:
-1. В среде разработки Visual Studio 2017 перейти во вкладку "Team Explorer" и в пункте "Локальные репозитории" нажать "Клнировать" и
+1. Скачайте приложение из ссылки и запустите проект. 
+
+2. Нажмите кнопку "Открыть" для открытие изображение над которым будет проводиться нормализация и получение хэша.
+
+3. Нажмите кнопку "Нормализация изображения" для изменения входного изображения.
+
+4. Воспользуйтесь кнопками "256" и "512" для получения хэша входного и выходного изображения построенного хеш-функцией «Стрибог».
+
+5. Нажмите кнопку "Сохранить" для сохранение измененного изображения в формате .pnm или в ином другом.
+------------------------------------------------------------------
+
+### Инструкция по использованию проекта:
+1. В среде разработки Visual Studio 2017 перейти во вкладку "Team Explorer" и в пункте "Локальные репозитории" нажать "Клонировать" и
 указать ссылку на этот репозиторий (https://github.com/rekrion/NormalizeImageX), после чего нажать кнопку "Клонировать". 
 
 2. После того, как процесс клонирования будет завершен, необходимо открыть загруженный проект, дважды нажав на него.
@@ -16,14 +30,19 @@ dagon0011@yandex.ru
 3. Когда проект будет открыт - необходимо нажать кнопку "Запустить" и дождаться, пока приложение запустится. 
 ------------------------------------------------------------------
 ### Используемые библиотеки: <br/>
->using System; <br/>
->using System.Collections.Generic; <br/>
->using System.Drawing; <br/>
->using System.Drawing.Imaging; <br/>
->using System.IO; <br/>
->using System.Linq; <br/>
->using System.Runtime.InteropServices; <br/>
->using System.Security; <br/>
->using System.Text; <br/>
->using System.Threading.Tasks; <br/>
->using System.Windows.Forms; <br/>
+>Microsoft.CSharp <br/>
+>System <br/>
+>System.Collections.Generic <br/>
+>System.Drawing <br/>
+>System.Drawing.Imaging <br/>
+>System.IO <br/>
+>System.Linq <br/>
+>System.Runtime.InteropServices <br/>
+>System.Security <br/>
+>System.Text <br/>
+>System.Threading.Tasks <br/>
+>System.Windows.Forms <br/>
+>ShaniSoft.Drawning.PNM <br/>
+>libwebp_x64.dll <br/>
+>libwebp_x86.dll <br/>
+>ShaniSoft.Drawning.PNM; <br/>
