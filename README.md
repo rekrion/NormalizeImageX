@@ -42,7 +42,6 @@ E-mail: vadwave@yandex.ru, dagon0011@yandex.ru<br/>
 >System.Text <br/>
 >System.Threading.Tasks <br/>
 >System.Windows.Forms <br/>
->ShaniSoft.Drawning.PNM <br/>
 >libwebp_x64.dll <br/>
 >libwebp_x86.dll <br/>
 >ShaniSoft.Drawning.PNM; <br/>
